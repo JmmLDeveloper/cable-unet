@@ -16,7 +16,7 @@
         </div>
 
         <div class="py-8 w-full">
-            <x-data-table :column-names="['id','user_id','package_id','created_at']" :records="$invoices" />
+            <x-data-table :column-names="['id','user_id','charge','package_id','created_at']" :records="$invoices" />
         </div>
     </div>
 </x-page-layout>
