@@ -14,6 +14,60 @@
             </div>
         </div>
         <div>
+            <h2 class="text-3xl mb-4"> Programming </h2>
+            <ul>
+                <li class=" mb-4 cursor-pointer  transition duration-300 ease-out hover-lift-effect rounded bg-white shadow" >
+                    <a class="w-full h-full block p-4"  href="{{ route('programming-detail',['channel' => $channel->id,'day'=> 'sunday']) }}">
+                        <h3>
+                            Sunday
+                        </h3>
+                    </a>
+                </li>
+                <li class=" mb-4 cursor-pointer  transition duration-300 ease-out hover-lift-effect rounded bg-white shadow" >
+                    <a class="w-full h-full block p-4"  href="{{ route('programming-detail',['channel' => $channel->id,'day'=> 'monday']) }}">
+                        <h3>
+                            Monday
+                        </h3>
+                    </a>
+                </li>
+                <li class=" mb-4 cursor-pointer  transition duration-300 ease-out hover-lift-effect rounded bg-white shadow" >
+                    <a class="w-full h-full block p-4"  href="{{ route('programming-detail',['channel' => $channel->id,'day'=> 'tuesday']) }}">
+                        <h3>
+                            Tuesday
+                        </h3>
+                    </a>
+                </li>
+                <li class=" mb-4 cursor-pointer  transition duration-300 ease-out hover-lift-effect rounded bg-white shadow" >
+                    <a class="w-full h-full block p-4"  href="{{ route('programming-detail',['channel' => $channel->id,'day'=> 'wednesday']) }}">
+                        <h3>
+                            Wednesday
+                        </h3>
+                    </a>
+                </li>
+                <li class=" mb-4 cursor-pointer  transition duration-300 ease-out hover-lift-effect rounded bg-white shadow" >
+                    <a class="w-full h-full block p-4"  href="{{ route('programming-detail',['channel' => $channel->id,'day'=> 'thrusday']) }}">
+                        <h3>
+                            Thursday
+                        </h3>
+                    </a>
+                </li>
+                <li class=" mb-4 cursor-pointer  transition duration-300 ease-out hover-lift-effect rounded bg-white shadow" >
+                    <a class="w-full h-full block p-4"  href="{{ route('programming-detail',['channel' => $channel->id,'day'=> 'friday']) }}">
+                        <h3>
+                            Friday
+                        </h3>
+                    </a>
+                </li>
+                <li class=" mb-4 cursor-pointer  transition duration-300 ease-out hover-lift-effect rounded bg-white shadow" >
+                    <a class="w-full h-full block p-4"  href="{{ route('programming-detail',['channel' => $channel->id,'day'=> 'saturday']) }}">
+                        <h3>
+                            Saturday
+                        </h3>
+                    </a>
+                </li>
+
+            </ul>
+
         </div>
     </div>
 

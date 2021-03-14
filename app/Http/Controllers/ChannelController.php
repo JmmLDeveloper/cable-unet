@@ -30,7 +30,15 @@ class ChannelController extends Controller
     public function show(Channel $channel)
     {
         return view('channels.detail',[ "channel" => $channel]);
-        
+    }
+
+    public function programming(Channel $channel,$day)
+    {
+        $template_data = [
+            "channel" => $channel,
+            "day" => $day
+        ];
+        return view('channels.programming-detail',$template_data);
     }
 
     /**

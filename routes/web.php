@@ -132,6 +132,8 @@ Route::prefix('subscriber')->name('subscriber.')->middleware('subscriber-route')
 
 Route::get('/channels',[ChannelController::class,'index'])->name('channel-list');
 Route::get('/channels/{channel}',[ChannelController::class,'show'])->name('channel-detail');
+Route::get('/channels/{channel}/programming/{day}',[ChannelController::class,'programming'])->name('programming-detail');
+
 
 
 
