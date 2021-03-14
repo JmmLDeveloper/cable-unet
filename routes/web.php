@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\InternetServiceController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\TelephoneServiceController;
 use App\Http\Controllers\TelevisionServiceController;
 use App\Http\Controllers\PackageController;
@@ -82,37 +83,43 @@ Route::prefix('admin')->name('admin.')->middleware('admin-route')->group(functio
 
     Route::post(
         '/user-management/requests/{package_change_request}/respond',
-        function(PackageChangeRequest $package_change_request,Request $request) {
-        $user = Auth::user();
-        $answer = $request->input('answer');
-        
-        if($answer === 'accept' && $package_change_request) {
-            $user->package()->associate( $package_change_request );
-            Log::channel('stderr')->info( $package_change_request);
-            $package_change_request->is_active = false;
-            $user->save();
-            $package_change_request->save();
-        } else if($answer === 'reject') {
-            $package_change_request->is_active = false;
-            $package_change_request->save();
-        }
+        function (PackageChangeRequest $package_change_request, Request $request) {
+            if ( $package_change_request ) {
+                $user = $package_change_request->user;
+                $answer = $request->input('answer');
+                $package = $package_change_request->package;
+                if ($answer === 'accept' && $user && $package  ) {
+                    $user->package()->associate($package);
+                    $package_change_request->is_active = false;
+                    $user->save();
+                    $package_change_request->save();
+                } else if ($answer === 'reject') {
+                    $package_change_request->is_active = false;
+                    $package_change_request->save();
+                }
+            }
 
-        return redirect()->route('admin.package-change-requests');
-    })->name('respond-request');
+            return redirect()->route('admin.package-change-requests');
+        }
+    )->name('respond-request');
+
+    Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoice-list');
+
+    Route::post('/invoices/close-month', [InvoiceController::class, 'store'])->name('invoices-close-month');
 
 });
 
 
 Route::prefix('subscriber')->name('subscriber.')->middleware('subscriber-route')->group(function () {
     Route::get('/home', function (Request $request) {
-        return view('subscriber-home');
+        return view('subscriber-home',["user" => auth()->user() ]);
     })->name('home');
 
-    Route::post('/packages/{package}/request-change', function (Package $package,Request $request) {
+    Route::post('/packages/{package}/request-change', function (Package $package, Request $request) {
         $user = Auth::user();
-        if ( $package ) {
-            $user_package_change_request = PackageChangeRequest::where('user_id',$user->id)->where('is_active',true)->first();
-            if( $user_package_change_request ) {
+        if ($package) {
+            $user_package_change_request = PackageChangeRequest::where('user_id', $user->id)->where('is_active', true)->first();
+            if ($user_package_change_request) {
                 $user_package_change_request->is_active = false;
                 $user_package_change_request->save();
             }
@@ -125,14 +132,17 @@ Route::prefix('subscriber')->name('subscriber.')->middleware('subscriber-route')
     })->name('request-package-change');
 
     Route::get('/packages/{package}', [PackageController::class, 'show'])
-    ->name('package-detail');
+        ->name('package-detail');
 
     Route::get('/packages', [PackageController::class, 'subscriberIndex'])->name('package-list');
+
+    Route::get('/invoices', [InvoiceController::class, 'subscriberInvoices'])->name('invoice-list');
+
 });
 
-Route::get('/channels',[ChannelController::class,'index'])->name('channel-list');
-Route::get('/channels/{channel}',[ChannelController::class,'show'])->name('channel-detail');
-Route::get('/channels/{channel}/programming/{day}',[ChannelController::class,'programming'])->name('programming-detail');
+Route::get('/channels', [ChannelController::class, 'index'])->name('channel-list');
+Route::get('/channels/{channel}', [ChannelController::class, 'show'])->name('channel-detail');
+Route::get('/channels/{channel}/programming/{day}', [ChannelController::class, 'programming'])->name('programming-detail');
 
 
 

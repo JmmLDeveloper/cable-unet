@@ -1,6 +1,7 @@
     <aside class="relative bg-sidebar h-screen w-72 hidden sm:block shadow-xl">
-        <div class="p-4 flex justify-center align-center">
+        <div class="p-4 pb-0 flex  flex-col items-center justify-center align-center">
             <a href="{{route('admin-home') }}" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin Panel</a>
+            <span  class="text-sm mt-4 text-white font-semibold uppercase"> {{ auth()->user()->name }} </span>
         </div>
         <nav class="text-white text-base font-semibold pt-3">
 
@@ -33,31 +34,22 @@
                 <i class="fas fa-user mr-3"></i>
                 User Management
             </a>
+            <a href="{{ route('admin.invoice-list') }}" class="{{ $tabStyle('invoices') }}">
+                <i class="fas fa-file-invoice-dollar mr-3"></i>
+                Invoices
+            </a>
             @else
+            <a href="{{route('subscriber.home') }}" class="{{ $tabStyle('home') }}">
+                <i class="fas fa-home mr-3"></i>
+                Home
+            </a>
             <a href="{{ route('subscriber.package-list') }}" class="{{ $tabStyle('packages') }}">
                 <i class="fas fa-box mr-3"></i>
                 Available Packages
             </a>
-            <a href="{{route('admin-home') }}" class="{{ $tabStyle('home') }}">
-                <i class="fas fa-tachometer-alt mr-3"></i>
-                pepe
-            </a>
-            <a href="{{ route('admin.internet-service-list') }}" class="{{ $tabStyle('internet-services') }}">
-                <i class="fas fa-globe mr-3"></i>
-                pepe pepe
-            </a>
-            <a href="{{ route('admin.telephone-service-list') }}" class="{{ $tabStyle('telephone-services') }}">
-                <i class="fas fa-phone mr-3"></i>
-                pepe pepe
-            </a>
-            <a href="{{ route('admin.television-service-list') }}" class="{{ $tabStyle('television-services') }}">
-                <i class="fas fa-tv mr-3"></i>
-                Television Services
-            </a>
-
-            <a href="{{ route('admin.internet-service-list') }}" class="{{ $tabStyle('package-change-request') }}">
-                <i class="fas fa-user mr-3"></i>
-                Package Change Requests
+            <a href="{{ route('subscriber.invoice-list') }}" class="{{ $tabStyle('invoices') }}">
+                <i class="fas fa-file-invoice-dollar mr-3"></i>
+                Invoices
             </a>
             @endif
             <a href="{{ route('channel-list') }}" class="{{ $tabStyle('channels') }}">

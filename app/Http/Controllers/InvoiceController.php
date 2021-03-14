@@ -2,40 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $invoices = Invoice::all();
+        return view('invoices.index', ["invoices"=> $invoices] );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function subscriberInvoices()
+    {
+        $user = Auth::user();
+        return view('invoices.user-invoices', ["invoices"=> $user->invoices ] );
+    }
+
+
     public function create()
     {
-        //
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $users = User::where('package_id','!=',null)->get();
+
+        foreach( $users as $user ) {
+            Invoice::create([
+                'user_id' => $user->id,
+                'package_id' => $user->package->id,
+                'charge' => $user->package->price,
+            ]);
+        }
+
+        return redirect()->route('admin.invoice-list');
     }
 
     /**
