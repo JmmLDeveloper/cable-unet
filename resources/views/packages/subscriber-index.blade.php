@@ -6,24 +6,14 @@
             <h1 class="text-4xl text-black"> Packages Available</h1>
         </div>
         @foreach( $packages as $package )
-        <a href="{{$package->url}}" class="p-4 mb-4 cursor-pointer  transition duration-300 ease-out hover-lift-effect rounded bg-white shadow">
-            <h2>
+        <a href="{{$package->url}}"
+            class="flex justify-between p-4 mb-4 cursor-pointer  transition duration-300 ease-out hover-lift-effect rounded bg-white shadow">
+            <h2 class="text-xl" >
                 {{$package->name}}
             </h2>
-            <div>
+            <span class="text-xl text-green-600">
                 $ {{$package->price}}
-            </div>
-            <div>
-                {{$package->internet}}
-
-            </div>
-            <div>
-                {{$package->telephone}}
-
-            </div>
-            <div>
-                {{$package->television}}
-            </div>
+            </span>
         </a>
         @endforeach
     </div>

@@ -11,42 +11,44 @@
                 <h1 class="text-6xl detail-title text-black">
                     {{$package->name}}
                 </h1>
+                <form class="flex justify-center" method="POST" action="{{ route('subscriber.request-package-change',[ 'package' => $package->id ]) }}">
+                    @csrf
+                    <button class="mt-2 p-4 bg-white cta-btn font-semibold py-2 ml-6 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center text-2xl" type="submit">
+                        Request this package for $ {{ $package->price }} a month
+                    </button>
+                </form>
             </div>
         </div>
         <div>
-            <form method="POST"  action="{{ route('subscriber.request-package-change',[ 'package' => $package->id ]) }}" >
-                @csrf
-                Request Plan For $ {{ $package->price }}
-                <button type="submit"> Change! </button>
-            </form>
             @if( $package->internetService )
-            <div>
-                <h3> Internet Service </h3>
-                <ul>
-                    <li> <strong> Name </strong> <span> {{ $package->internetService->name }} </span> </li>
-                    <li> <strong> Bandwidth </strong> <span> {{ $package->internetService->bandwidth }} </span> </li>
-                </ul>
+            <div class="bg-white p-4 rounded-lg mb-4">
+                <h3 class="text-2xl"> Internet </h3>
+                <h4 class="primary-color text-xl "> {{$package->internetService->name}} </h4>
+                <p> Internet with a provided bandwith of {{ $package->internetService->bandwidth  }} </p>
             </div>
             @endif
             @if( $package->telephoneService )
-            <div>
-                <h3> telephone Service </h3>
-                <ul>
-                    <li> <strong> Name </strong> <span> {{ $package->telephoneService->name }} </span> </li>
-                    <li> <strong> Minutes </strong> <span> {{ $package->telephoneService->minutes }} </span> </li>
-                </ul>
+            <div class="bg-white p-4 rounded-lg mb-4">
+                <h3 class="text-2xl"> Telephone </h3>
+
+                <h4 class="primary-color text-xl "> {{$package->telephoneService->name}} </h4>
+                <p> Enjoy internationals call with this package {{ $package->telephoneService->minutes  }} minutes </p>
             </div>
             @endif
             @if( $package->televisionService )
-            <div>
-                <h3> Televisions Service </h3>
+            <div class="bg-white p-4 rounded-lg mb-4">
+                <h3 class="text-2xl"> Television </h3>
+
+                <h4 class="primary-color text-xl "> {{$package->televisionService->name}} </h4>
+                <p> Watch your favorites shows with {{$package->televisionService->tier}} television </p>
+                <h6 class="primary-color text-lg"> List of Channels </h6>
                 <ul>
-                    <li> <strong> Name </strong> <span> {{ $package->televisionService->name }} </span> </li>
-                    <li> <strong> Tier </strong> <span> {{ $package->televisionService->tier }} </span> </li>
+                    @foreach( $package->televisionService->channels as $channel )
+                    <li class="ml-2"> * {{ $channel->name }} </li>
+                    @endforeach
                 </ul>
             </div>
             @endif
-
         </div>
     </div>
 
