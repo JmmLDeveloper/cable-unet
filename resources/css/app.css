@@ -1,0 +1,18 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+@layer utilities {
+    .lift-effect {
+        transform: translate(0,-0.3rem);
+    }
+
+    .detail-title {
+        transform: translate(0,-0.1rem);
+    }
+
+    .hover-lift-effect:hover {
+        transform: translate(0,-0.3rem);
+    }
+}
