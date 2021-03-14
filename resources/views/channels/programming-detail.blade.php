@@ -2,7 +2,7 @@
     <x-sidebar active-tab="channels" />
 
     <div class="w-full relative h-screen overflow-x-hidden overflow-y-scroll border-t flex flex-col px-12 py-4">
-        <a class="absolute top-0 mt-6 ml-6 left-0" href="{{ route('channel-list') }}">
+        <a class="absolute top-0 mt-6 ml-6 left-0" href="{{ $channel->url }}">
             <i class=" rounded-full primary-color shadow-lg hover:shadow-xl  text-4xl fas fa-arrow-circle-left mr-3"></i>
         </a>
         <div>
@@ -15,7 +15,7 @@
         </div>
         <div>
             <h2 class="text-3xl mb-4"> Programming  > {{ $day }}</h2>
-
+            <x-data-table :column-names="['id','show_name','start','end']" :records="$programmings" />
         </div>
     </div>
 
