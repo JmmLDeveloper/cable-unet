@@ -56,5 +56,12 @@
                 <i class="fas fa-th mr-3"></i>
                 Channels
             </a>
+            <form method="POST" action="{{ route('logout') }}" >
+                @csrf
+                <button class="w-full h-full {{ $tabStyle('logout') }}" >
+                    <i  class="fas fa-sign-out-alt mr-3"></i>
+                    Logout
+                </button>
+            </form>
         </nav>
     </aside>

@@ -165,6 +165,13 @@ Route::get('/login', function (Request $request) {
     return view('login');
 })->name('login');
 
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect()->route('login');
+})->name('logout');
+
 
 Route::post('/login', function (Request $request) {
 
