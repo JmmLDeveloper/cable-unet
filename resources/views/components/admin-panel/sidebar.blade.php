@@ -7,7 +7,7 @@
 
             @if( $adminSidebar )
             <a href="{{route('admin-home') }}" class="{{ $tabStyle('home') }}">
-                <i class="fas fa-tachometer-alt mr-3"></i>
+                <i class="fas fa-home mr-3"></i>
                 Dashboard
             </a>
             <a href="{{ route('admin.internet-service-list') }}" class="{{ $tabStyle('internet-services') }}">

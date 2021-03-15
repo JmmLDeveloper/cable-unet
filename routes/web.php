@@ -158,7 +158,20 @@ Route::get('/login', function (Request $request) {
 
 
 Route::get('/admin/home', function (Request $request) {
-    return  view('admin-home');
+
+
+    $package_change_requests = PackageChangeRequest::where('is_active',true)->limit(4)->get();
+
+    $packages = Package::limit(4)->get();
+
+
+    $template_data = [
+        "user" => auth()->user(),
+        "packages" => $packages,
+        "package_change_requests" => $package_change_requests
+    ];
+
+    return  view('admin-home', $template_data );
 })->name('admin-home')->middleware('admin-route');
 
 Route::get('/login', function (Request $request) {
