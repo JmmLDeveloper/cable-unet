@@ -56,6 +56,10 @@
                 <i class="fas fa-th mr-3"></i>
                 Channels
             </a>
+            <a href="{{ route('programming-days-list') }}" class="{{ $tabStyle('programmings') }}">
+                <i class="fas fa-calendar mr-3"></i>
+                Programmings
+            </a>
             <form method="POST" action="{{ route('logout') }}" >
                 @csrf
                 <button class="w-full h-full {{ $tabStyle('logout') }}" >

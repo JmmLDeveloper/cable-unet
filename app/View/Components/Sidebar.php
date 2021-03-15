@@ -19,7 +19,9 @@ class Sidebar extends Component
     }
 
     public function tabStyle($name) {
-        $base_class = 'flex items-center text-white py-4 pl-6 nav-item';
+        $py = $this->adminSidebar ? 'py-2' : 'py-4';
+
+        $base_class = "flex items-center text-white $py pl-6 nav-item";
         if( $name === $this->activeTab ) {
             return $base_class . ' active-nav-link';
         } else {

@@ -7,7 +7,7 @@ namespace Database\Seeders;
 use App\Models\Channel;
 use App\Models\Programming;
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\Log;
 
 class ChannelSeeder extends Seeder
 {

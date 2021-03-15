@@ -140,9 +140,15 @@ Route::prefix('subscriber')->name('subscriber.')->middleware('subscriber-route')
 
 });
 
-Route::get('/channels', [ChannelController::class, 'index'])->name('channel-list');
-Route::get('/channels/{channel}', [ChannelController::class, 'show'])->name('channel-detail');
-Route::get('/channels/{channel}/programming/{day}', [ChannelController::class, 'programming'])->name('programming-detail');
+Route::middleware('auth')->group(function(){
+    Route::get('/channels', [ChannelController::class, 'index'])->name('channel-list');
+    Route::get('/channels/{channel}', [ChannelController::class, 'show'])->name('channel-detail');
+    Route::get('/channels/{channel}/programming/{day}', [ChannelController::class, 'programming'])->name('programming-detail');
+    Route::get('/programmings', [ChannelController::class, 'programmingDaysList'])->name('programming-days-list');
+    Route::get('/programmings/{day}/table', [ChannelController::class, 'programmingTable'])->name('programming-table');
+});
+
+
 
 
 
