@@ -31,9 +31,17 @@ class UserManagementController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        $user_data['is_admin'] = $request->input('is_admin','false');
+        $user_data['is_admin'] = $request->input('is_admin',0) === 'true' ? 1 : 0;
 
-        User::create( $user_data  );
+        $user = new User;
+        $user->name = $user_data['name'];
+        $user->email = $user_data['email'];
+        $user->password = $user_data['password'];
+        $user->is_admin = $user_data['is_admin'];
+
+
+        $user->save();
+
         return  redirect()->route('admin.user-list');
     }
 
