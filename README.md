@@ -4,8 +4,8 @@ http://104.131.58.178/ , pero no puedo dar garantia de que sirva
 cuando se lee esto ya que aveces la base de datos se cae por falta de
 memoria , los usuarios son los siguientes :
 
-<div style="color:#ff6347;"> admin@gmail.com ( password: '12345678' ) </div>
-<div style="color:#ff6347;"> sub@gmail.com ( password: '12345678' ) </div>
+<div style="color:#ff6347;"> **admin@gmail.com ( password: '12345678' ) **</div>
+<div style="color:#ff6347;">** sub@gmail.com ( password: '12345678' ) **</div>
 
 ## Instrucciones
 
@@ -48,12 +48,16 @@ php artisan migrate
 
 Darle valores a la base de datos
 esto creara 2 usuarios:
-<div style="color:#ff6347;"> admin@gmail.com ( password: '12345678' ) </div>
-<div style="color:#ff6347;"> sub@gmail.com ( password: '12345678' ) </div>
-ademas de los canales por defecto
-
+<div style="color:#ff6347;"> **admin@gmail.com ( password: '12345678' )** </div>
+<div style="color:#ff6347;"> **sub@gmail.com ( password: '12345678' )** </div>
+<div></div>
+ademas de los canales por defecto , las migraciones pueden tardar en correr de 1 - 5 min
+debido a que genera las programaciones para cada dia de la semana , lo que resulta en
+alrededor de 1700 programaciones para 15 canales
 
 ```
 php artisan db:seed
 ```
+
+
 
