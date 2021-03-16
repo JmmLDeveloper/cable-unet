@@ -59,5 +59,6 @@ alrededor de 1700 programaciones para 15 canales
 php artisan db:seed
 ```
 
-
+## Video Defensa
+https://www.youtube.com/watch?v=pjj0aP9Mz9Q&ab_channel=JoseMiguelMarquezLabrador
 
